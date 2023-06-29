@@ -16,7 +16,7 @@ class Video {
       titulo: json["snippet"]["title"],
       descricao: json["snippet"]["description"],
       imagem: json["snippet"]["thumbnails"]["high"]["url"],
-      canal: json["snippet"]["channelTitle"],
+      canal: json["snippet"]["channelTitle "],
     );
   }
 

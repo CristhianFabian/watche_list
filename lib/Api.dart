@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:watche_list/model/Video.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 const CHAVE_YOUTUBE_API = "AIzaSyDoUjPXx83CUKC3wKIuRbEhG1iO4fCgmgE";
 const ID_CANAL = "UC13ikrGSy3E2AveqLAI9lqg";
 const URL_BASE = "https://www.googleapis.com/youtube/v3/";
@@ -17,7 +18,7 @@ class Api {
             "&maxResults=20"
             "&order=date"
             "&key=$CHAVE_YOUTUBE_API"
-           "&channelId=$ID_CANAL"
+           //"&channelId=$ID_CANAL"
             "&q=$pesquisa"
     ));
 
@@ -26,9 +27,7 @@ class Api {
       Map<String, dynamic> dadosJson = json.decode (response.body);
       List<Video> videos = dadosJson["items"].map<Video>(
           (map){
-            
             return Video.fromJson(map);
-            
           }
       ).toList();
 

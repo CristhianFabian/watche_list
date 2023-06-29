@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:youtube_player_flutter/flutter_youtube.dart';
+
 
 class CustomSearchDelegate extends SearchDelegate<String>{
 
@@ -6,55 +8,40 @@ class CustomSearchDelegate extends SearchDelegate<String>{
   List<Widget>? buildActions(BuildContext context) {
     return [
       IconButton(
-    onPressed: (){
-      query = "";
-    },
-    icon: Icon(Icons.clear)
+          onPressed: (){
+            query= "";
+          },
+          icon: Icon(
+            Icons.clear
+          )
       )
     ];
-
   }
 
   @override
   Widget? buildLeading(BuildContext context) {
-    return IconButton(
-          onPressed: (){
-            close(context, "");
-          },
-          icon: Icon(Icons.arrow_back)
-      );
+    return  IconButton(
+        onPressed: (){
+          close(context, "");
+
+        },
+        icon: Icon(
+            Icons.arrow_back
+        )
+    );
   }
 
   @override
   Widget buildResults(BuildContext context) {
+   //  print("resultado: pesquisa realizada");
     close(context, query);
     return Container();
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
-
-    List<String> lista = [];
-    if(query.isNotEmpty){
-      lista = [
-        "Android", "android navegação", "IOS", "Jogos"
-      ];
-
-      return ListView.builder(
-        itemCount: lista.length,
-        itemBuilder: (context, index){
-          return ListTile(
-            title: Text(lista[index]),
-          );
-        },
-      );
-    }else{
-      return Center(
-        child: Text("Nenhum resultado para a pesquisa!"),
-      );
-    }
-
-
+   // print("resultado: digitado: "+ query);
+    return Container();
   }
 
 

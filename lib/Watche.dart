@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:watche_list/CustomSearchDelegate.dart';
 import 'package:watche_list/telas/Biblioteca.dart';
 import 'package:watche_list/telas/EmAlta.dart';
@@ -22,7 +23,6 @@ class _WatcheState extends State<Watche> {
   @override
   Widget build(BuildContext context) {
 
-
     List<Widget> telas = [
       Inicio( _resultado ),
       EmAlta(),
@@ -39,30 +39,17 @@ class _WatcheState extends State<Watche> {
         backgroundColor: Colors.black,
        title: Text("Watche"),
         actions: <Widget>[
-        //   IconButton(
-        //       onPressed: (){
-        //         print("acao: videocam");
-        //       },
-        //       icon: Icon(Icons.videocam)
-        //   ),
           IconButton(
               onPressed: () async{
-               String res = await showSearch(
-                   context: context,
-                    delegate: CustomSearchDelegate()
-               ).toString();
-               setState(() {
-                 _resultado = res;
-               });
+               String? res = await showSearch(context: context,
+                    delegate: CustomSearchDelegate()) ;
+               // print("resultado: digitado "+ res!);
+                setState(() {
+                  _resultado = res!;
+                });
               },
               icon: Icon(Icons.search)
           ),
-          // IconButton(
-          //     onPressed: (){
-          //       print("acao: conta");
-          //     },
-          //     icon: Icon(Icons.account_circle)
-          // ),
         ],
       ),
       body: Container(

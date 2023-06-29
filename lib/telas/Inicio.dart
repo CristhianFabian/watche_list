@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_youtube_view/flutter_youtube_view.dart';
 import 'package:watche_list/model/Video.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+
 
 import '../Api.dart';
 
@@ -16,8 +19,6 @@ class Inicio extends StatefulWidget {
 class _InicioState extends State<Inicio> {
 
   _listarVideos(String pesquisa){
-
-    Future<List<Video>> videos;
 
     Api api = Api();
     return api.pesquisar(pesquisa);
@@ -42,35 +43,39 @@ class _InicioState extends State<Inicio> {
           case ConnectionState.active:
           case ConnectionState.done:
             if(snapshot.hasData){
-              
               return ListView.separated(
                   itemBuilder: (context, index){
                     List<Video>? videos = snapshot.data;
                     Video video = videos![ index ];
-                    return Column(
-                      children: <Widget>[
-                        Container(
-                          height: 200,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: NetworkImage(video.imagem.toString())
-                            )
-                          ),
-                        ),
-                        ListTile(
-                          title: Text(video.titulo.toString(),
-                          style: TextStyle(
-                            color: Colors.white
-                          ),
-                          ),
-                          subtitle: Text(video.canal.toString(),
-                            style: TextStyle(
-                                color: Colors.grey
+                    return GestureDetector(
+                      onTap: (){
+
+                      },
+                      child: Column(
+                        children: <Widget>[
+                          Container(
+                            height: 200,
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    fit: BoxFit.cover,
+                                    image: NetworkImage(video.imagem.toString())
+                                )
                             ),
                           ),
-                        )
-                      ],
+                          ListTile(
+                            title: Text(video.titulo.toString(),
+                              style: TextStyle(
+                                  color: Colors.white
+                              ),
+                            ),
+                            subtitle: Text(video.canal.toString(),
+                              style: TextStyle(
+                                  color: Colors.grey
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
                     );
                   },
                   separatorBuilder: (context, index)=> Divider(
@@ -86,9 +91,7 @@ class _InicioState extends State<Inicio> {
                 child: Text("Nenhum dado a ser exibido!"),
               );
             }
-            break;
         }
-        return null!;
       },
     );
   }
