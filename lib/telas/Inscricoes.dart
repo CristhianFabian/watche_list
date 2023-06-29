@@ -15,7 +15,8 @@ class _InscricoesState extends State<Inscricoes> {
         child: Text(
           "Inscrições",
           style: TextStyle(
-              fontSize: 25
+              fontSize: 25,
+            color: Colors.white
           ),
         ),
       ),

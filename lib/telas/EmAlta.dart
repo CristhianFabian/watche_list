@@ -15,7 +15,8 @@ class _EmAltaState extends State<EmAlta> {
         child: Text(
           "Em alta",
           style: TextStyle(
-              fontSize: 25
+              fontSize: 25,
+              color: Colors.white
           ),
         ),
       ),
