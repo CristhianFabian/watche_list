@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_youtube_view/flutter_youtube_view.dart';
-import 'package:watche_list/model/Video.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
-
-
+import 'package:watche_list/model/Video.dart';
 import '../Api.dart';
 
 class Inicio extends StatefulWidget {
@@ -17,6 +14,7 @@ class Inicio extends StatefulWidget {
 }
 
 class _InicioState extends State<Inicio> {
+  YoutubePlayerController? _controller;
 
   _listarVideos(String pesquisa){
 
@@ -26,9 +24,26 @@ class _InicioState extends State<Inicio> {
   }
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+  }
+  @override
+  void didUpdateWidget(covariant Inicio oldWidget) {
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-
-
 
     return FutureBuilder<List<Video>>(
       future: _listarVideos(widget.pesquisa),
@@ -47,11 +62,7 @@ class _InicioState extends State<Inicio> {
                   itemBuilder: (context, index){
                     List<Video>? videos = snapshot.data;
                     Video video = videos![ index ];
-                    return GestureDetector(
-                      onTap: (){
-
-                      },
-                      child: Column(
+                    return Column(
                         children: <Widget>[
                           Container(
                             height: 200,
@@ -75,8 +86,7 @@ class _InicioState extends State<Inicio> {
                             ),
                           )
                         ],
-                      ),
-                    );
+                      );
                   },
                   separatorBuilder: (context, index)=> Divider(
                     height: 2,

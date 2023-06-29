@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:youtube_player_flutter/flutter_youtube.dart';
-
 
 class CustomSearchDelegate extends SearchDelegate<String>{
 
